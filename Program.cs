@@ -14,19 +14,24 @@ namespace RPN
             {
                 List<string> list = new List<string>();
                 list = Tokens(formula);
-                for (int i = 0; i < list.Count; i++)
+                if (list[0] == "0")
                 {
-                    if(list[i] == "0") { continue; }
-                    Console.Write(list[i] + " ");
+                    for (int i = 1; i < list.Count; i++) { Console.Write(list[i] + " "); }
+                }
+                else
+                {
+                    for (int i = 0; i < list.Count; i++) { Console.Write(list[i] + " "); }
                 }
                 Console.Write("\n");
                 if (IsCorrect(formula) == true)
                 {
                     string[] PostfixTab = InfixToPostfix(Tokens(formula));
-                    for (int i = 0; i < PostfixTab.Length; i++)
+                    if(PostfixTab[0] == "0")
                     {
-                        if (PostfixTab[i] == "0") { continue; }
-                        Console.Write(PostfixTab[i] + " ");
+                        for (int i = 1; i < PostfixTab.Length; i++) { Console.Write(PostfixTab[i] + " "); }
+                    } else
+                    {
+                        for (int i = 0; i < PostfixTab.Length; i++) { Console.Write(PostfixTab[i] + " "); }
                     }
                     Console.Write("\n");
                     Console.WriteLine(CalX(Tokens(formula), x));
@@ -282,7 +287,7 @@ namespace RPN
             }
             else
             {
-               RPN odwrotna_notacja_polska = new RPN(args[0], Convert.ToInt32(args[1]), Convert.ToDouble(args[2]), Convert.ToDouble(args[3]), Convert.ToDouble(args[4]));
+                RPN odwrotna_notacja_polska = new RPN(args[0], Convert.ToInt32(args[1]), Convert.ToDouble(args[2]), Convert.ToDouble(args[3]), Convert.ToDouble(args[4]));
             }
             Console.ReadKey();
         }
